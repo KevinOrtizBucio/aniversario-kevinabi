@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin - Abi ✨</title>
+<style>
+:root{--bg:#090806;--bg2:#15110b;--gold:#c9a45c;--gold2:#f2d99b;--cream:#fff7e8;--muted:#b9ad99;--line:rgba(201,164,92,.28)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}body.welcome-open{overflow:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% -15%,#47331a 0%,#171109 35%,#090806 75%)}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:99}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.particle{position:absolute;bottom:-30px;color:var(--gold2);opacity:0;animation:rise linear infinite;text-shadow:0 0 12px #d8b56d66}
+@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.55}80%{opacity:.35}100%{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.wrap{width:min(1120px,91%);margin:auto}
+.nav{position:sticky;top:0;z-index:30;background:#090806c9;backdrop-filter:blur(12px);border-bottom:1px solid #c9a45c22}
+.navinner{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:15px 0}
+.brand{color:var(--gold2);letter-spacing:.16em;font-size:.72rem;text-transform:uppercase}
+.navlinks{display:flex;gap:18px;flex-wrap:wrap}
+.navlinks a{color:var(--muted);text-decoration:none;font-size:.78rem}
+.navlinks a:hover{color:var(--gold2)}
+.hero{min-height:90vh;display:grid;place-items:center;text-align:center;position:relative;padding:75px 0}
+.kicker{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(3.2rem,9vw,7.5rem);line-height:.94;font-weight:400;margin:25px 0}
+h1 em{font-weight:400;color:var(--gold2)}
+.hero p{max-width:620px;margin:25px auto;color:var(--muted);line-height:1.9;font-size:1.05rem}
+.ornament{color:var(--gold);font-size:1.5rem;margin:25px}
+.btn{border:1px solid var(--gold);background:transparent;color:var(--gold2);padding:14px 23px;cursor:pointer;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;transition:.3s}
+.btn:hover{background:var(--gold);color:#100d08;transform:translateY(-3px);box-shadow:0 8px 30px #c9a45c33}
+.btn.filled{background:var(--gold);color:#100d08}
+section{padding:90px 0;position:relative}
+.sectionhead{text-align:center;margin:0 auto 40px;max-width:700px}
+.sectionhead h2{font-size:clamp(2.1rem,5vw,3.7rem);font-weight:400;margin:13px 0}
+.sectionhead p{color:var(--muted);line-height:1.8}
+.rule{width:65px;height:1px;background:var(--gold);margin:22px auto}
+.panel{border:1px solid var(--line);background:linear-gradient(145deg,#ffffff08,#ffffff02);box-shadow:0 25px 70px #0004}
+.reveal{opacity:0;transform:translateY(25px);transition:.8s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.letter{max-width:780px;margin:auto;padding:clamp(25px,6vw,65px);text-align:center}
+.seal{width:60px;height:60px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold2);font-size:1.5rem;margin:0 auto 25px}
+.placeholder{color:var(--muted);line-height:2;font-style:italic}
+.gold{color:var(--gold2)}
+
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.photo-main{height:440px;position:relative;overflow:hidden;background:#20180e;border:1px solid var(--line)}
+.photo-main img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-main .photo-placeholder{height:100%;display:grid;place-items:center;text-align:center;padding:30px;color:var(--muted);background:linear-gradient(145deg,#302416,#100d08)}
+.photo-main .photo-placeholder b{display:block;font-size:1.5rem;color:var(--gold2);font-weight:400;margin-bottom:10px}
+.photo-label{position:absolute;bottom:0;left:0;right:0;padding:45px 22px 20px;background:linear-gradient(transparent,#000d)}
+.gallery-side h3{font-size:2rem;font-weight:400;color:var(--gold2)}
+.gallery-side p{color:var(--muted);line-height:1.8}
+.gallery-controls{display:flex;align-items:center;gap:12px;margin-top:22px}
+.arrow{width:42px;height:42px;border:1px solid var(--line);color:var(--gold2);background:transparent;cursor:pointer}
+.thumbs{display:flex;gap:8px;margin-top:20px}
+.thumb{width:50px;height:50px;border:1px solid var(--line);background:#2b2115;cursor:pointer;opacity:.5}
+.thumb.active{opacity:1;border-color:var(--gold)}
+
+.timeline{max-width:850px;margin:auto;position:relative}
+.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
+.timeitem{width:50%;padding:0 35px 35px;position:relative}
+.timeitem:nth-child(even){margin-left:50%}
+.timeitem:before{content:"✦";position:absolute;right:-8px;top:8px;color:var(--gold)}
+.timeitem:nth-child(even):before{left:-8px;right:auto}
+.timecard{padding:24px;border:1px solid var(--line);background:#ffffff05}
+.timecard small{color:var(--gold);letter-spacing:.15em}
+.timecard h3{font-weight:400;color:var(--gold2);font-size:1.45rem;margin:12px 0}
+.timecard p{color:var(--muted);line-height:1.7;margin:0}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.flipcard{min-height:210px;perspective:1000px;cursor:pointer}
+.flipinner{height:100%;min-height:210px;position:relative;transform-style:preserve-3d;transition:transform .7s}
+.flipcard.open .flipinner{transform:rotateY(180deg)}
+.flipfront,.flipback{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:linear-gradient(145deg,#21190f,#100d08)}
+.flipfront .icon{font-size:2rem;color:var(--gold);margin-bottom:14px}
+.flipfront h3{font-weight:400;color:var(--gold2);margin:0}
+.flipfront small{color:var(--muted);margin-top:10px}
+.flipback{transform:rotateY(180deg);color:var(--muted);line-height:1.8}
+.flipback strong{color:var(--gold2);font-weight:400}
+
+.randombox{text-align:center;max-width:760px;margin:auto;padding:35px}
+.randomquote{font-size:clamp(1.4rem,4vw,2.2rem);line-height:1.5;color:var(--gold2);min-height:95px;display:grid;place-items:center;margin:15px 0 25px}
+.quiz{max-width:700px;margin:auto;padding:30px}
+.quizquestion{font-size:1.4rem;color:var(--gold2);text-align:center;margin:0 0 22px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answer{border:1px solid var(--line);background:#ffffff05;color:var(--cream);padding:15px;cursor:pointer;font-family:inherit}
+.answer:hover{border-color:var(--gold);color:var(--gold2)}
+.quizresult{text-align:center;color:var(--gold2);min-height:30px;margin-top:18px}
+.final{text-align:center;max-width:800px;margin:auto}
+.gift{width:150px;height:130px;margin:30px auto;position:relative;cursor:pointer;transition:.3s}
+.gift:hover{transform:translateY(-8px)}
+.giftbox{position:absolute;bottom:0;left:15px;width:120px;height:85px;background:linear-gradient(135deg,#b68b42,#e5c77c);border:1px solid #f4dfaa}
+.giftbox:before{content:"";position:absolute;left:48px;top:0;width:22px;height:100%;background:#f7e7b7}
+.giftlid{position:absolute;left:5px;top:25px;width:140px;height:25px;background:#d5b265;border:1px solid #f4dfaa}
+.bow{position:absolute;top:0;left:54px;font-size:3rem;color:var(--gold2)}
+.finalmessage{display:none;margin:25px auto;padding:28px;border:1px solid var(--line);line-height:1.9;color:var(--gold2)}
+.finalmessage.show{display:block;animation:appear .8s}
+@keyframes appear{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+footer{text-align:center;padding:45px 0 70px;color:var(--muted);font-size:.85rem}
+#topbtn{position:fixed;bottom:20px;right:20px;z-index:20;display:none;border:1px solid var(--line);background:#100d08;color:var(--gold2);width:42px;height:42px;cursor:pointer}
+.modal{position:fixed;inset:0;background:#090806;z-index:1000;display:grid;place-items:center;padding:20px;transition:opacity .5s;isolation:isolate}
+.modal.hide{opacity:0;pointer-events:none;visibility:hidden}
+.modalbox{max-width:560px;text-align:center;padding:45px 30px;border:1px solid var(--gold);background:radial-gradient(ellipse at top,#352516,#0b0906);position:relative}
+.modalbox h2{font-size:2.5rem;font-weight:400;color:var(--gold2)}
+.modalbox p{color:var(--muted);line-height:1.8}
+.modalclose{margin-top:15px}
+.spark{position:fixed;pointer-events:none;z-index:80;color:var(--gold2);animation:spark .8s forwards}
+@keyframes spark{to{transform:translateY(-35px) scale(.2);opacity:0}}
+@media(max-width:760px){
+ .navlinks{display:none}.hero{min-height:78vh}.gallery{grid-template-columns:1fr}.photo-main{height:360px}
+ .grid3{grid-template-columns:1fr}.timeline:before{left:8px}.timeitem,.timeitem:nth-child(even){width:100%;margin-left:0;padding:0 0 25px 30px}
+ .timeitem:before,.timeitem:nth-child(even):before{left:0;right:auto}.answers{grid-template-columns:1fr}
+}
+
+.book-intro{text-align:center;margin:0 auto 35px;color:var(--muted);line-height:1.8}
+.book-ornament{font-size:2rem;color:var(--gold)}
+.book-shell{display:none;border:1px solid var(--line);background:linear-gradient(120deg,#171109,#0b0906);padding:15px;box-shadow:0 25px 80px #0007}
+.book-shell.open{display:block;animation:appear .7s ease}
+.book-topline{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;color:var(--gold);font-size:.68rem;letter-spacing:.16em}
+.book-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:12px 4px 22px;scrollbar-color:var(--gold) #1b150d;scrollbar-width:thin}
+.book-page{flex:0 0 min(850px,88vw);min-height:490px;scroll-snap-align:center;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;border:1px solid #c9a45c55;background:linear-gradient(135deg,#f0e4c9,#d9c49c);color:#332515;box-shadow:inset 0 0 0 8px #e8d7b5,inset 0 0 0 9px #b8944f}
+.book-page:after{content:"";position:absolute;top:0;bottom:0;left:50%;width:18px;background:linear-gradient(90deg,#5c4526aa,#fff5d466,#7b5c31aa);opacity:.45;pointer-events:none}
+.book-copy{padding:clamp(25px,5vw,55px);display:flex;flex-direction:column;justify-content:center}
+.chapter{font-size:.66rem;letter-spacing:.16em;color:#8c682e}
+.book-copy h3{font-size:clamp(1.8rem,4vw,3rem);font-weight:400;line-height:1.1;margin:20px 0;color:#4a3218}
+.book-copy p{font-size:.98rem;line-height:1.85;color:#59452c}
+.book-copy .book-note{font-style:italic;color:#8c682e;font-size:.85rem;margin-top:10px}
+.book-image{padding:35px 28px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px}
+.book-image img {
+width: 100%;
+max-width: 100%;
+height: auto;
+max-height: 420px;
+object-fit: contain;
+display: block;
+border-radius: 8px;
+}
+.book-photo-placeholder{width:100%;height:300px;border:1px solid #b8944f;background:linear-gradient(145deg,#d2bc91,#f0e4c9);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;color:#8c682e;line-height:1.7}
+.book-photo-placeholder b{font-size:2.5rem;display:block;margin-bottom:12px;font-weight:400}
+.book-image small{font-size:.65rem;letter-spacing:.15em;color:#8c682e}
+.book-cover{display:block;background:radial-gradient(circle at center,#f7edda,#d8bf8c);text-align:center}
+.book-cover-inner{height:100%;min-height:490px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:35px;border:1px solid #b8944f;margin:10px}
+.book-cover h3{font-size:clamp(3rem,7vw,5rem);font-weight:400;line-height:1;margin:20px 0;color:#493117}
+.book-cover h3 em{color:#9b7436;font-weight:400}
+.book-cover p{max-width:350px;line-height:1.8;color:#735733}
+.book-cover-date{margin-top:25px;color:#8c682e;letter-spacing:.2em}
+.book-cover-hint{margin-top:35px;font-size:.7rem;color:#8c682e}
+.book-flourish{font-size:1.6rem;color:#9b7436;margin:12px}
+.book-ending{background:linear-gradient(135deg,#f4e8cf,#d6bd8d)}
+.book-controls{display:flex;align-items:center;justify-content:center;gap:15px;padding:10px}
+.book-progress{width:min(300px,45vw);height:2px;background:#3b2b18}
+#bookProgressFill{height:100%;width:0;background:var(--gold);transition:width .3s}
+.book-help{text-align:center;color:var(--muted);font-size:.75rem;padding:5px 10px 12px}
+@media(max-width:650px){.book-page{grid-template-columns:1fr;flex-basis:88vw}.book-page:after{display:none}.book-image{padding:0 25px 30px}.book-photo-placeholder{height:220px}.book-cover-inner{min-height:430px}.book-copy{padding:28px 25px 18px}.book-page{min-height:0}}
+
+
+.section-next-wrap{display:flex;justify-content:center;margin:38px auto 0;padding:0 15px}
+.section-next{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border:1px solid var(--line);background:#100d08;color:var(--gold2);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-size:.7rem;transition:.25s}
+.section-next:hover{border-color:var(--gold);background:#c9a45c18;transform:translateY(3px)}
+.section-next .next-arrow{font-size:1.35rem;line-height:1}
+.hero-next{margin-top:38px}
+@media(prefers-reduced-motion:reduce){.section-next{transition:none}}
+
+</style>
+</head>
+<body class="welcome-open">
+<div id="progress"></div><div id="particles"></div>
+<div class="modal" id="welcome">
+  <div class="modalbox">
+    <div class="kicker">Una pequeña "carta" para ti</div>
+    <h2>Antes de comenzar…</h2>
+    <div class="ornament">✧ ♡ ✧</div>
+    <p>Preparé esta pequeña carta para celebrar nuestra historia. Cada botón guarda un detalle (porfavor USALOS , esta canijo programar esto).</p>
+    <button class="btn filled modalclose" id="enter">Entrar</button>
+  </div>
+</div>
+
+<nav class="nav">
+ <div class="wrap navinner">
+  <div class="brand">✦ Nuestra historia ABI - KEVIN 09-11-25 / 09-11-26 ✦</div>
+  <div class="navlinks">
+   <a href="#carta">Carta</a><a href="#fotos">Fotos</a><a href="#libro">Nuestro libro</a><a href="#sorpresas">Sorpresas</a><a href="#final">Final</a>
+  </div>
+ </div>
+</nav>
+
+<header class="hero wrap" id="inicio">
+ <div>
+  <div class="kicker">09 · 11 · 2026 — De los mejores dias para mi</div>
+  <h1>Un año de<br><em>nosotros.</em></h1>
+  <div class="ornament">✧ ─── ♡ ─── ✧</div>
+  <p>Doce meses, miles de momentos (y peleas) y una historia que sigue creciendo. Esta página es apenas una pequeña forma de decirte lo especial que eres para mí bb.</p>
+  <button class="btn" onclick="document.querySelector('#carta').scrollIntoView({behavior:'smooth'})">Comenzar  ↓</button>
+ </div>
+</header>
+
+<section class="wrap reveal" id="carta">
+ <div class="sectionhead"><div class="kicker">Unas palabritas para ti</div><h2>Mi carta</h2><div class="rule"></div><p>Te amoo</p></div>
+ <article class="panel letter">
+  <div class="seal">♡</div>
+  <p class="placeholder">Bueno Abi , quiero agradecerte por todooo lo que hemos vivivo en este primer añito, para mi se me ha hecho bastante bonito , de los mejores que he vivido , y más con alguien que conozco desde la secundaria , me parece muy bonito que todo esto se haya logrado a partir de una practica de laboratorio, quiero decirte que agradezo que sea mi novia la que en algun momento un pequeño kevin escucho el apellido de una pequeña Sara y Junto sus apellidos y dijo "mira nomas  , los apellidos de mi pápa JAJAJAJA" , eres la chica que dije desde secundaria , bueno tercero, "esta bonita la sarax"  se lo comente a Sergio ,y ahora puedo decir que lo logre, tambien quiero que sepas que aunque aveces nos peleamos y siempre gano , te amo con todo mi corazon Abi , no sabemos lo que vaya a pasar en este nuevo año , pero siempre te agradecere por este año que paso y de lo que podemos seguir contruyendo, lo has hecho bastante bien como novia y GRACIAS por todo lo que has hecho por mi, Te Amo demasiado.</p>
+  <p class="gold" style="margin-top:30px">Con todo mi amor para mi quimiquita favorita,</p><p class="gold"><em>— Kevin</em></p>
+ </article>
+</section>
+
+<section class="wrap reveal" id="fotos">
+ <div class="sectionhead"><div class="kicker">Nuestras fotitos</div><h2>Un álbum de nosotros</h2><div class="rule"></div><p></p></div>
+ <div class="gallery">
+  <div class="photo-main panel" id="mainPhoto">
+   <div class="photo-placeholder"><div><b>Una foto especial</b></div></div>
+   <div class="photo-label">Recuerdo número uno</div>
+  </div>
+  <div class="gallery-side">
+   <div class="kicker" id="photoNum">RECUERDO 01 / 05</div>
+   <h3 id="photoTitle">El comienzo de algo bonito</h3>
+   <p id="photoDesc"></p>
+   <div class="gallery-controls"><button class="arrow" id="prev">←</button><button class="arrow" id="next">→</button><span id="counter" style="color:var(--muted)">01 / 05</span></div>
+   <div class="thumbs" id="thumbs"></div>
+   <p style="font-size:.8rem;margin-top:18px"></p>
+  </div>
+ </div>
+</section>
+
+
+<section class="wrap reveal" id="libro">
+ <div class="sectionhead">
+  <div class="kicker">Un poquito de lo nuestro</div>
+  <h2>El libro de nuestra historia</h2>
+  <div class="rule"></div>
+  <p></p>
+ </div>
+ <div class="book-intro">
+  <span class="book-ornament">✦</span>
+  <p>Hay historias que merecen ser contadas despacio… Te amo Abi</p>
+  <button class="btn" id="bookStart">Abrir nuestro "libro" →</button>
+ </div>
+ <div class="book-shell" id="bookShell">
+  <div class="book-topline">
+   <span>✧ NUESTRO PRIMER AÑO ✧</span>
+   <span id="bookPageCount">PORTADA</span>
+  </div>
+  <div class="book-track" id="bookTrack">
+   <article class="book-page book-cover">
+    <div class="book-cover-inner">
+     <div class="kicker">Te amo con todo mi corazón</div>
+     <div class="book-flourish">✧ ❦ ✧</div>
+     <h3>Todo comenzó<br><em>contigo</em></h3>
+     <p>Un pequeño libro de los momentos que más creo son lo mejor de nuestra relación</p>
+     <div class="book-cover-date">09 · 11 · 2026</div>
+     <span class="book-cover-hint">Desliza o usa las flechas para comenzar →</span>
+    </div>
+   </article>
+ 
+<article class="book-page">
+<div class="book-copy">
+<p>Bueno, todo comenzó un 21 de junio del 2023, con un mensaje de práctica de laboratorio. Yooooo te mandé mensaje para ponernos de acuerdo. Creo que ninguno de los dos sabíamos de lo que acabábamos de comenzar.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F1.jpg" alt="Recuerdo 1" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 1</b><span>No se pudo cargar: FOTOS/F1.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Esta es nuestra primera foto que tenemos juntos JAJAJAJA. Nos habíamos puesto de acuerdo y YO sí me animé a pedirte eso. Ya empezábamos a hablar más, pero por Messenger y todo eso. Después ME PASASTE TU NÚMERO y hablamos como amigos.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F2.jpg" alt="Recuerdo 2" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 2</b><span>No se pudo cargar: FOTOS/F2.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Esta fotito es de las primeras que tenemos de salidas. En ese tiempo éramos buenos amigos. Es de las salidas más raras porque duró como 3 horas a lo mucho JAJAJA, pero nos la pasamos bien.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F3.jpg" alt="Recuerdo 3" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 3</b><span>No se pudo cargar: FOTOS/F3.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>La vez que fuimos al bosque. Como antes salíamos bien poquito porque no te dejaban, obvio 🧐, esta fue nuestra primera salida (a escondidas) más lejana que teníamos en ese momento. Es de mis salidas favoritas porque estaba muy tranquilo todo y platicamos un buen en el bosque.</p>
+<p></p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F4.jpg" alt="abi" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 4</b><span>No se pudo cargar: FOTOS/F4.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>En estas vacaciones pasó lo del teatro, pero no tengo fotos de esooo, pero sí de la cartita. Creo que ese día es de los más importantes para lo nuestro porque como que conectamos mucho con esa platica en la banquetita con unos dorilocos y fruta JAJAJA.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F5.jpg" alt="Recuerdo 5" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 5</b><span>No se pudo cargar: FOTOS/F5.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>El día que me invitaste a verte jugar vóley. Ya oficialmente quería estar contigo, pero pues no podía JAJAJA. Ese día me la pasé bien y verte jugar fue de los mejores recuerdos que tenemos como amigos, aunque seas medio mala para eso 😉.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F6.jpg" alt="Recuerdo 6" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 6</b><span>No se pudo cargar: FOTOS/F6.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Considerooooo que esta es nuestra última salida como amigos bien JAJAJA. Esto fue el último día de vacaciones que teníamos. Veníamos de casi terminar de hablar (por tu culpa, obvio), pero todo se resolvió y salimos aunque sea una vez en esas vacaciones.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F7.jpg" alt="Recuerdo 7" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 7</b><span>No se pudo cargar: FOTOS/F7.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Ese sábado es de los días más confusos que tuve. Considero que sin ese sábado nada de esto hubiera pasado, porque nos demostramos lo que sentíamos el uno por el otro. No pasó nada, pero porque no sabíamos cómo iba a reaccionar el otro.</p>
+<p>Ahorita me arrepiento de no hacer nada ese sábado porque sabemos qué hubiera pasado, pero es de los mejores días, porque además conocí a tu familia JAJAJA.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F8.jpg" alt="Recuerdo 8" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 8</b><span>No se pudo cargar: FOTOS/F8.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>El día del beso JAJAJAJA. En el lapso de la foto anterior y esta hubo esa plática donde tú mandaste mensaje, nos sinceramos y sabíamos que esa conexión existía mutuamente JAJAJAJA. Aunque yo sí lo aceptaba completamente, tú aún "estabas confundida".</p>
+<p>No sabíamos ni teníamos pensado andar, pero lo único que sabíamos es que nos gustábamos. Esta foto fue después del beso en el cine, y de los días más felices para mí.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F9.jpg" alt="Recuerdo 9" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 9</b><span>No se pudo cargar: FOTOS/F9.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Y pasó un 9 de noviembre del 2025, el día más especial para mí. Creo que uno de los mejores lugares para que empezáramos esto fue en Chapultepec. Los dos sabíamos que iba a pasar, pero solo era oficializarlo JAJAJAJA.</p>
+<p>Iba muy nervioso porque no sabía cómo íbamos a empezar esto. Sabía que el "no" no lo tenía JAJAJA, así que eso me relajaba un poquitito más. Desde ese día y hasta este momento no me arrepiento de absolutamente nada de lo que hemos vivido juntos, y estoy muy feliz de tenerte en mi vida.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F10.jpg" alt="Recuerdo 10" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 10</b><span>No se pudo cargar: FOTOS/F10.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Esta es nuestra primera salida solos (porque antes habíamos salido con mis amigos y antes de esa nos vimos en la casa de tu tío), pero salida salida fue esta. Y también la primera de este año. Fue muy bonito ir a ese museo y pasarla bien. Besarte como novios fue de lo mejorcito JAJAJAJA.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F11.jpg" alt="Recuerdo 11" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 11</b><span>No se pudo cargar: FOTOS/F11.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Posteriormente hubo ya salidas como esta a la plaza, que no me acuerdo muy bien de esta JAJAJA, pero estuvo laik.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F12.jpg" alt="Recuerdo 12" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 12</b><span>No se pudo cargar: FOTOS/F12.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>El día que no me dejaron salir JAJAJA, pero fuiste a mi escuelita. Por cierto, esa noche fuiste a esa fiesta y te emborrachaste 🧐.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F13.jpg" alt="Recuerdo 13" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 13</b><span>No se pudo cargar: FOTOS/F13.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>El día del concierto JAJAJAJA. Nuestro primer 14 de febrero juntos y como novios, y también el primer concierto y único al que vamos (pronto iremos a otro). De los mejores días que pasamos. Nos divertimos y convivimos en Reforma a las 2 a. m. JAJAJAJA.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F14.jpg" alt="Recuerdo 14" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 14</b><span>No se pudo cargar: FOTOS/F14.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Tu cumpleaños. Ese día casi no hicimos nada, pero la pasamos juntitos. También es la única vez que conociste mi casa y a mis perritos, aunque sean unos minutitos.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F15.jpg" alt="Recuerdo 15" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 15</b><span>No se pudo cargar: FOTOS/F15.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Un día antes de esta foto salimos con mis amigos, conociste a Hf por primera vez, me quedé en tu casita y al siguiente día salimos al tianguis JAJAJA. Los días en los que más tiempo hemos pasado juntos, pero todo fue muy laik en esos días.</p>
+<p>No se veía laik el Kevin pelón, fin.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F16.jpg" alt="Recuerdo 16" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 16</b><span>No se pudo cargar: FOTOS/F16.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>El día de los 15 años. Fue nuestra primera fiesta formal, también la primera vez que fuimos a una iglesia juntitos. Convivimos mucho y la pasamos laik ese día.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F17.jpg" alt="Recuerdo 17" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 17</b><span>No se pudo cargar: FOTOS/F17.jpg</span></div>\')">
+</div>
+</article>
+
+<article class="book-page">
+<div class="book-copy">
+<p>Cuando me invitaron al convivio de Fer JAJAJA. Considero que es el día en el que más bonita te he visto. Noooo sé por qué, pero ese día, waos con Abi JAJAJA.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F18.jpg" alt="Recuerdo 18" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 18</b><span>No se pudo cargar: FOTOS/F18.jpg</span></div>\')">
+</div>
+</article>
+<article class="book-page">
+<div class="book-copy">
+<p>El día de tu graduación fue muyyyy importante para los dos. Para ti, pues porque pasó eso, pero para mí fue waos verte conseguirlo, y más que te acompañé esos 3 años. Verte lograr eso fue waos y muy laik.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F19.jpg" alt="Recuerdo 19" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 19</b><span>No se pudo cargar: FOTOS/F19.jpg</span></div>\')">
+</div>
+</article>
+<!-- PÁGINA 20 -->
+<article class="book-page">
+<div class="book-copy">
+<p>De los días más felices y tristes JAJAJAJA. Fue muy laik que en un momento y partido tan importante para mí, que soy un chico al que le gusta el fútbol JAJAJAJA, fuéramos juntos a eso sin importar el resultado. Pasarla juntos es de los momentos más importantes y bonitos para mí.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F20.jpg" alt="Recuerdo 20" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 20</b><span>No se pudo cargar: FOTOS/F20.jpg</span></div>\')">
+</div>
+</article>
+<article class="book-page">
+<div class="book-copy">
+<p>Este día fue para celebrar mi cumpleaños. Y aunque no hicimos bastantes cosas, el plan de ir a Chapultepec y estar solos platicando es de lo más tranquilo y bonito que puedo tener. Las fotos están bien laiks JAJAJAJA. Gracias por los regalos.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F21.jpg" alt="Recuerdo 21" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 21</b><span>No se pudo cargar: FOTOS/F21.jpg</span></div>\')">
+</div>
+</article>
+<article class="book-page">
+<div class="book-copy">
+<p>Y ya por último, nuestras salidas en las últimas veces han sido a Pastos de Zacatenco JAJAJAJA. Quiero que sepas que estar platicando, jugando, molestándonos, bromeando y haciendo de todo un poco es de las mejores cosas que podemos hacer.</p>
+<p>Quiero que sepas que aunque estemos enojados, ese lugar de Pastos, solo dime que llegue ahí y será nuestro momento de tranquilidad, Abi.</p>
+</div>
+<div class="book-image">
+<img src="./FOTOS/F22.jpg" alt="Recuerdo 22" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=book-photo-placeholder><b>Foto 22</b><span>No se pudo cargar: FOTOS/F22.jpg</span></div>\')">
+</div>
+</article>
+<article class="book-page book-ending">
+<div class="book-copy">
+<p>Y sé que faltan muchas salidas que se me pasaron, pero no las puse porque se haría muy extenso esto o porque no tengo fotitos. Perdoncitos. ♡</p>
+</div>
+<div class="book-image">
+<div class="book-photo-placeholder">
+<b>♡</b>
+</div>
+</div>
+</article>
+  </div>
+  <div class="book-controls">
+   <button class="arrow" id="bookPrev" aria-label="Página anterior">←</button>
+   <div class="book-progress"><div id="bookProgressFill"></div></div>
+   <button class="arrow" id="bookNext" aria-label="Página siguiente">→</button>
+  </div>
+  <p class="book-help">En computadora: usa las flechas o desplázate horizontalmente. En celular: desliza hacia la izquierda , si se traba no es mi culpa YA TE ADVERTI JAJAJAJA.</p>
+ </div>
+</section>
+
+
+<section class="wrap reveal" id="sorpresas">
+ <div class="sectionhead"><div class="kicker">Toca para descubrirlas</div><h2>Unos mensajitos</h2><div class="rule"></div><p></p></div>
+ <div class="grid3">
+  <div class="flipcard"><div class="flipinner"><div class="flipfront"><div class="icon">✧</div><h3>Un motivo</h3><small>Presiona para descubrir</small></div><div class="flipback"><strong>Motivo #1</strong><br>Porque eres la persona con la que quiero compartir muchisimos más momentos juntitos.</div></div></div>
+  <div class="flipcard"><div class="flipinner"><div class="flipfront"><div class="icon">♡</div><h3>Un recuerdo</h3><small>Presiona para descubrir</small></div><div class="flipback"><strong>Un recuerdo favorito</strong><br>El dia en el que una bot se estrello con una camioneta estacionada JAJAJA.</div></div></div>
+  <div class="flipcard"><div class="flipinner"><div class="flipfront"><div class="icon">∞</div><h3>Una promesa</h3><small>Presiona para descubrir</small></div><div class="flipback"><strong>Una promesa bonita</strong><br>Formar una familia y poder decir somos novios ingenieros :).</div></div></div>
+ </div>
+</section>
+
+<section class="wrap reveal">
+ <div class="sectionhead"><div class="kicker">Un mensaje al azar</div><h2>Cuando necesites recordar…</h2><div class="rule"></div><p>Presiona el botón y deja que aparezca un mensajito especial , son poquitos lo se, pero no se que más poner bb.</p></div>
+ <div class="panel randombox">
+  <div class="randomquote" id="randomquote">Hay muchas cosas bonitas que todavía quiero vivir contigo. ✨</div>
+  <button class="btn" id="randomBtn">Otro mensajito ♡</button>
+ </div>
+</section>
+
+<section class="wrap reveal">
+ <div class="sectionhead"><div class="kicker">Un pequeño juego</div><h2>¿Cuánto recuerdass?</h2><div class="rule"></div><p>Un mini juego</p></div>
+ <div class="panel quiz">
+  <p class="quizquestion" id="question">¿Donde fue nuestra primera salida?</p>
+  <div class="answers" id="answers">
+   <button class="answer" data-correct="false">Al parque</button>
+   <button class="answer" data-correct="true">A la plaza</button>
+   <button class="answer" data-correct="false">En tu casa</button>
+   <button class="answer" data-correct="false">En Zacatlan</button>
+  </div>
+  <div class="quizresult" id="quizresult"></div>
+  <div style="text-align:center;margin-top:15px"><button class="btn" id="nextQuestion">Siguiente pregunta</button></div>
+ </div>
+</section>
+
+<section class="wrap reveal" id="final">
+ <div class="sectionhead"><div class="kicker">Todavía queda algo</div><h2></h2><div class="rule"></div><p>Hay un ultimo mensajito.</p></div>
+ <div class="final">
+  <div class="gift" id="gift" role="button" aria-label="Abrir regalo" tabindex="0"><div class="bow">♧</div><div class="giftlid"></div><div class="giftbox"></div></div>
+  <button class="btn filled" id="giftBtn">Abrir</button>
+  <div class="finalmessage" id="finalmessage">Este mensajito es para disculparme de que en estos momentos no cuento con el dinerito para comprarte algo que te mereces , pero te prometo que a finales de este mesesito te regalo algo laik , perdon por el momento , pero te debo eso bb, graciasss . TE AMO</div>
+ </div>
+</section>
+
+
+<footer>
+ <div class="ornament">✧ ♡ ✧</div>
+Hecho con cariño para celebrar <span class="gold">nuestro primer año</span>.<br>
+<span style="display:block;margin-top:12px">09 · 11 · 2026</span>
+</footer>
+<button id="topbtn" title="Volver arriba">↑</button>
+
+<script>
+
+
+function addNextArrow(fromId, toId) {
+  const section = document.getElementById(fromId);
+  if (!section) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'section-next-wrap';
+  const link = document.createElement('a');
+  link.className = 'section-next';
+  link.href = '#' + toId;
+  link.innerHTML = '<span>Continuar</span><span class="next-arrow" aria-hidden="true">↓</span>';
+  link.setAttribute('aria-label', 'Continuar a la siguiente parte');
+  wrap.appendChild(link);
+  section.appendChild(wrap);
+}
+addNextArrow('inicio', 'carta');
+addNextArrow('carta', 'fotos');
+addNextArrow('fotos', 'libro');
+
+const bookShell=document.getElementById('bookShell');
+const bookTrack=document.getElementById('bookTrack');
+const bookPages=[...bookTrack.querySelectorAll('.book-page')];
+function openBook(){bookShell.classList.add('open');bookShell.scrollIntoView({behavior:'smooth',block:'center'});updateBookProgress();}
+document.getElementById('bookStart').addEventListener('click',openBook);
+function updateBookProgress(){
+ const max=bookTrack.scrollWidth-bookTrack.clientWidth;
+ const pct=max>0?(bookTrack.scrollLeft/max)*100:0;
+ document.getElementById('bookProgressFill').style.width=pct+'%';
+ let page=0,closest=Infinity;
+ bookPages.forEach((p,i)=>{const d=Math.abs(p.offsetLeft-bookTrack.offsetLeft-bookTrack.scrollLeft);if(d<closest){closest=d;page=i}});
+ document.getElementById('bookPageCount').textContent=page===0?'PORTADA':'PÁGINA '+String(page).padStart(2,'0')+' / '+String(bookPages.length-1).padStart(2,'0');
+}
+bookTrack.addEventListener('scroll',updateBookProgress);
+function moveBook(dir){
+ if(!bookShell.classList.contains('open'))openBook();
+ const current=bookTrack.scrollLeft;
+ const target=current+dir*(bookTrack.clientWidth*.86);
+ bookTrack.scrollTo({left:target,behavior:'smooth'});
+}
+document.getElementById('bookPrev').addEventListener('click',()=>moveBook(-1));
+document.getElementById('bookNext').addEventListener('click',()=>moveBook(1));
+
+// Fondo de pequeñas luces doradas
+const particleBox=document.getElementById('particles');
+for(let i=0;i<32;i++){
+ const p=document.createElement('span');p.className='particle';p.textContent=['✦','✧','·','♡'][Math.floor(Math.random()*4)];
+ p.style.left=Math.random()*100+'%';p.style.animationDuration=(12+Math.random()*18)+'s';
+ p.style.animationDelay=(-Math.random()*25)+'s';p.style.fontSize=(8+Math.random()*15)+'px';particleBox.appendChild(p);
+}
+// Portada de bienvenida
+document.getElementById('enter').onclick=()=>{document.getElementById('welcome').classList.add('hide');document.body.classList.remove('welcome-open');};
+// Barra de progreso
+window.addEventListener('scroll',()=>{
+ const max=document.documentElement.scrollHeight-innerHeight;
+ document.getElementById('progress').style.width=(max>0?scrollY/max*100:0)+'%';
+ document.getElementById('topbtn').style.display=scrollY>500?'block':'none';
+});
+document.getElementById('topbtn').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+// Animación al aparecer
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const memories=[
+{title:'El comienzo de algo bonito',desc:'Nuestra primer fotito como novios.',caption:'',image:'./FOTOS/1.2.jpg'},
+{title:'Uno de los mejores dias',desc:'Aunque perdio México :(',caption:'',image:'./FOTOS/1.6.jpg'},
+{title:'Un día inolvidable',desc:'.',caption:'',image:'./FOTOS/1.3.jpg'},
+{title:'El dia que mas compartimos tiempo JAJAJA',desc:'',caption:'',image:'./FOTOS/1.4.jpg'},
+{title:'Un recuerdo para siempre',desc:'Nuestro Primer concierto.',caption:'',image:'./FOTOS/1.10.jpg'}
+];
+let idx=0;
+function drawPhoto(){
+ const m=memories[idx];const main=document.getElementById('mainPhoto');
+ main.innerHTML = '<img src="' + m.image + '" alt="' + m.title + '">' +
+    '<div class="photo-label">' + m.title + '</div>';
+ document.getElementById('photoTitle').textContent=m.title;document.getElementById('photoDesc').textContent=m.desc;
+ document.getElementById('photoNum').textContent='RECUERDO '+String(idx+1).padStart(2,'0')+' / '+String(memories.length).padStart(2,'0');
+ document.getElementById('counter').textContent=String(idx+1).padStart(2,'0')+' / '+String(memories.length).padStart(2,'0');
+ document.querySelectorAll('.thumb').forEach((t,i)=>t.classList.toggle('active',i===idx));
+}
+const thumbBox=document.getElementById('thumbs');
+memories.forEach((m,i)=>{const b=document.createElement('button');b.className='thumb';b.title=m.caption;b.textContent=String(i+1).padStart(2,'0');b.onclick=()=>{idx=i;drawPhoto()};thumbBox.appendChild(b)});
+document.getElementById('prev').onclick=()=>{idx=(idx-1+memories.length)%memories.length;drawPhoto()};
+document.getElementById('next').onclick=()=>{idx=(idx+1)%memories.length;drawPhoto()};
+// Tarjetas que se voltean
+document.querySelectorAll('.flipcard').forEach(card=>card.addEventListener('click',()=>card.classList.toggle('open')));
+const quotes=['Eres uno de mis lugares favoritos , me encanta molestarte','Gracias por hacer especiales tantos días normales, te amooo.','Si pudiera volver al comienzo, volvería a elegir hacer esa practica de nuevo.','Todavía nos esperan muchísimos recuerdos bonitos (ir al estadio).','Mi parte favorita de esta historia es que la hacemos juntitos.', 'Eres la quimiquita que siempre tendra alguien que la escuche','Aunque tus dias no se vean tan buenos , siempre te voy a leer (no me desesperes tanto bb)', 'Erees la mejor novia del mundooo','El poli esta dificil, tu puedes (no me dejes solito)','Eres la mujer que quiero para toda mi vida abiii','No quiero que me falten tus caras de enojada nunca JAJAJAJA'];
+document.getElementById('randomBtn').onclick=()=>{let q;do{q=quotes[Math.floor(Math.random()*quotes.length)]}while(q===document.getElementById('randomquote').textContent);document.getElementById('randomquote').textContent=q};
+const questions=[
+{q:'¿Dónde fue nuestra primera salida?',a:['Al parque','A la plaza','En tu casa','En Zacatlán'],correct:0},
+
+{q:'¿Quién es el que manda en la relación?',a:['Mi pug','Abi','Kevin','Cristiano Ronaldo'],correct:2},
+
+{q:'¿A qué hora fue nuestro primer mensaje?',a:['8:53 p. m.','8:51 a. m.','7:32 p. m.','8:51 p. m.'],correct:3},
+
+{q:'¿Cuántas desesperaciones te aguanto?',a:['1','7','0','3'],correct:2},
+
+{q:'¿Qué es lo que más me gusta de ti (en el buen sentido)?',a:['Tus ojos','Tu forma de hablar','Tu manera de bromear','Todo de ti, obvioooo'],correct:3},
+
+{q:'¿A dónde hemos salido más veces?',a:['Plaza','Parque','Pastos','La verdad no sé'],correct:3},
+
+{q:'¿Cuál es el primer gran sueño que tengo contigo?',a:['Ir a un concierto juntos','Ir al estadio','Volar juntos y despertarnos tempranito JAJAJA','Ninguno de los anteriores'],correct:2},
+
+{q:'¿Cuál es la mejor universidad?',a:['UNAM','IPN','UAM','Universidad del Fútbol, Pachuca'],correct:1},
+
+{q:'¿Cuidas a Gerbi con todo tu corazón?',a:['Sí','No','Ya se lo regalé a mi nuevo novio','Qué te importa'],correct:2},
+
+{q:'¿Qué deseo para nuestro futuro?',a:['Seguir juntos y cumplir nuestros sueños politécnicos','Dejar todo como está','No hacer planes','Que todo siga igual para siempre y seguir peleando'],correct:0}
+];
+let qi=0;
+function loadQ(){const q=questions[qi];document.getElementById('question').textContent=q.q;const box=document.getElementById('answers');box.innerHTML='';q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=a;b.onclick=()=>{document.getElementById('quizresult').textContent=i===q.correct?'¡Correcto! ✨ Siguiente pregunta ':'Casi… ¡No seas bot , selecciona otra opción! ♡'};box.appendChild(b)});document.getElementById('quizresult').textContent='';}
+document.getElementById('nextQuestion').onclick=()=>{qi=(qi+1)%questions.length;loadQ()};loadQ();
+// Regalo final
+function openGift(){document.getElementById('finalmessage').classList.toggle('show');document.getElementById('giftBtn').textContent=document.getElementById('finalmessage').classList.contains('show')?'Cerrar sorpresa':'Abrir mi regalo ✨'}
+document.getElementById('giftBtn').onclick=openGift;document.getElementById('gift').onclick=openGift;document.getElementById('gift').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')openGift()};
+// Pequeño destello al tocar/click
+document.addEventListener('click',e=>{if(e.target.closest('button,.flipcard,.gift')){const s=document.createElement('span');s.className='spark';s.textContent='✦';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),850)}});
+drawPhoto();
+</script>
+</body>
+</html>
